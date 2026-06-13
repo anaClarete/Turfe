@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="resultado"></div>
+    Quantidade Voltas: <input type="text" id="ipt_qtdVoltas"><br>
+    Quantidade Cavalos: <input type="text" id="ipt_qtdCavalos">
+    <button onclick="corrida()">Iniciar Corrida</button>
+
+</body>
+
+</html>
+<script>
+    let quantidadeCavalos;
+    let quantidadeVoltas;
+    let cavalos = []
+
+    let pontuacoes = []
+
+    function adicionarCavalo() {
+        quantidadeVoltas = Number(ipt_qtdVoltas.value)
+        quantidadeCavalos = Number(ipt_qtdCavalos.value)
+
+        if (quantidadeCavalos > 6) {
+            alert("Não pode ter mais do que 6 cavalos");
+            return;
+        }
+
+        for (let i = 0; i < quantidadeCavalos; i++) {
+            let nomeCavalo = prompt("Digite o nome do cavalo: ")
+
+            let json = {
+                "nome": nomeCavalo,
+                "pontuacaoRodada": 0,
+                "pontuacaoTotal": 0
+            }
+
+            cavalos.push(json)
+        }
+    }
+
+    let podio = []
+    function calcularPodio() {
+        tempos = []
+
+        for (let i = 0; i < cavalos.length; i++) {
+            tempos.push(cavalos[i].pontuacaoTotal);
+        }  
+
+        while(podio.length < 3) {
+            let menor = tempos[0];
+            for (let i = 0; i < tempos.length; i++) {
+                const tempo = tempos[i];
+                
+                if(tempo < menor) {
+                    menor = tempo
+                }
+            }
+            podio.push(menor)
+            let index = tempos.indexOf(menor);
+            tempos.splice(index, 1);
+        }
+
+        console.log(podio)
+    }
+
+    function corrida() {
+        adicionarCavalo();
+        console.log(quantidadeCavalos, quantidadeVoltas)
+        for (let i = 0; i < quantidadeVoltas; i++) {
+            let tempoTotal = 0;
+            resultado.innerHTML += `<br>Volta ${i + 1} <br>`
+            for (let j = 0; j < quantidadeCavalos; j++) {
+
+                let pontuaçãoAtual = Number((Math.random(9 - 7 + 1) + 7).toFixed(2))
+                tempoTotal += pontuaçãoAtual;
+                cavalos[j].pontuacaoTotal += pontuaçãoAtual
+
+                resultado.innerHTML += ` Cavalo ${cavalos[j].nome} ${pontuaçãoAtual.toFixed(2)} - ${cavalos[j].pontuacaoTotal.toFixed(2)}`
+            }
+        }
+        calcularPodio()
+
+     
+    }
+
+</script>
