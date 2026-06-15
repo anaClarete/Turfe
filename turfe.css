@@ -1,0 +1,608 @@
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Oswald:wght@400;500;600;700&display=swap');
+
+:root {
+    --tinta: #221a12;
+    --papel: #efe6d2;
+    --papel-escuro: #ddd0b3;
+    --areia: #cbb286;
+    --pista: #b98a52;
+    --pista-borda: #6e4a26;
+    --ouro: #d6a32a;
+    --prata: #9aa0a6;
+    --bronze: #b06b34;
+    --rust: #a4361f;
+    --verde: #3f5e3a;
+    --sombra: rgba(34, 26, 18, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Oswald', system-ui, sans-serif;
+    color: var(--tinta);
+    min-height: 100vh;
+    background-color: var(--papel);
+}
+
+.oculto {
+    display: none !important;
+}
+
+.tela {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+}
+
+.cabecalho {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.titulo {
+    font-family: 'Rye', serif;
+    font-size: 3.5rem;
+    letter-spacing: 5px;
+}
+
+.subtitulo {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--pista-borda);
+    margin-top: 8px;
+}
+
+.painel-config {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    background: var(--papel-escuro);
+    padding: 22px;
+    border: 3px solid var(--tinta);
+    border-radius: 6px;
+    box-shadow: 8px 8px 0 var(--pista-borda);
+    margin-bottom: 28px;
+}
+
+.config-interna {
+    display: flex;
+    gap: 40px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.campo input {
+    padding: 10px 12px;
+    border: 2px solid var(--tinta);
+    border-radius: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    width: 220px;
+    background: var(--papel);
+    color: var(--tinta);
+}
+
+.campos-nomes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.linha-nome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--papel);
+    border: 2px solid var(--tinta);
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+
+.badge-personagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--tinta);
+    overflow: hidden;
+    background: var(--papel-escuro);
+}
+
+.input-nome {
+    width: 100%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    background: transparent;
+    color: var(--tinta);
+}
+
+.input-nome::placeholder {
+    color: #9a8a6a;
+    font-style: italic;
+}
+
+.btn {
+    cursor: pointer;
+    border: 3px solid var(--tinta);
+    border-radius: 4px;
+    padding: 12px 22px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px);
+}
+
+.btn:active {
+    transform: translate(0, 0);
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-principal {
+    background: var(--tinta);
+    color: var(--papel);
+    box-shadow: 5px 5px 0 var(--pista-borda);
+}
+
+.btn-principal:hover {
+    box-shadow: 7px 7px 0 var(--pista-borda);
+}
+
+.arena {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 22px;
+    align-items: start;
+}
+
+.hipodromo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background: repeating-conic-gradient(rgba(0, 0, 0, 0.05) 0deg 6deg, transparent 6deg 12deg), var(--pista);
+    border: 14px solid var(--pista-borda);
+}
+
+.campo-interno {
+    position: absolute;
+    inset: 17%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--areia), var(--pista));
+    border: 4px dashed var(--pista-borda);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--tinta);
+    text-align: center;
+}
+
+.placar-volta {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.placar-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.placar-valor {
+    font-family: 'Rye', serif;
+    font-size: 2.8rem;
+}
+
+.placar-total {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.lider-box {
+    background: var(--tinta);
+    color: var(--papel);
+    border-radius: 4px;
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    min-width: 70%;
+    border: 2px solid var(--ouro);
+}
+
+.lider-titulo {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.lider-nome {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ouro);
+}
+
+.lider-gap {
+    font-size: 0.78rem;
+    opacity: 0.95;
+}
+
+.linha-chegada {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 17%;
+    height: 17%;
+    background: repeating-conic-gradient(#1a1a1a 0% 25%, #f4f1e8 0% 50%) 0 / 12px 12px;
+    opacity: 0.9;
+    border-bottom: 3px solid var(--tinta);
+    z-index: 1;
+}
+
+.cavalo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    margin: -23px 0 0 -23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: transform 0.05s linear;
+}
+
+.cavalo .ficha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 3px solid var(--tinta);
+    background: var(--papel);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+}
+
+.cavalo .etiqueta {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2px;
+    color: var(--papel);
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    pointer-events: none;
+    border: 1px solid var(--tinta);
+}
+
+.painel-voltas {
+    background: var(--papel-escuro);
+    border: 3px solid var(--tinta);
+    border-radius: 6px;
+    padding: 16px 18px;
+    box-shadow: 6px 6px 0 var(--pista-borda);
+    max-height: 540px;
+    overflow-y: auto;
+}
+
+.painel-voltas h2 {
+    font-family: 'Rye', serif;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    border-bottom: 3px solid var(--tinta);
+    padding-bottom: 8px;
+}
+
+.bloco-volta {
+    background: var(--papel);
+    border: 2px solid var(--tinta);
+    border-left: 6px solid var(--rust);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    animation: surgir 0.4s ease;
+}
+
+.bloco-volta h3 {
+    font-family: 'Rye', serif;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: var(--tinta);
+}
+
+.bloco-volta .lider-linha {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--verde);
+    margin-bottom: 4px;
+}
+
+.bloco-volta .gap-linha {
+    font-size: 0.8rem;
+    color: var(--rust);
+    margin-bottom: 8px;
+}
+
+.linha-cavalo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    padding: 3px 0;
+    border-bottom: 1px dashed var(--areia);
+}
+
+.lc-nome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lc-ficha {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--tinta);
+    object-fit: cover;
+}
+
+.linha-cavalo.primeiro {
+    font-weight: 700;
+    color: var(--bronze);
+}
+
+@keyframes surgir {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-encerrar {
+    display: block;
+    margin: 30px auto 0;
+    background: var(--ouro);
+    color: var(--tinta);
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    box-shadow: 6px 6px 0 var(--pista-borda);
+}
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        box-shadow: 6px 6px 0 var(--pista-borda);
+    }
+
+    50% {
+        box-shadow: 6px 6px 0 var(--pista-borda), 0 0 22px rgba(214, 163, 42, 0.8);
+    }
+}
+
+.tela-encerramento {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.cabecalho-final {
+    text-align: center;
+    margin-bottom: 32px;
+    z-index: 2;
+}
+
+.kicker {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    color: var(--rust);
+    font-weight: 700;
+}
+
+.titulo-final {
+    font-family: 'Rye', serif;
+    font-size: 4rem;
+    margin: 8px 0;
+    color: var(--tinta);
+}
+
+.subtitulo-final {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pista-borda);
+    font-size: 0.9rem;
+}
+
+.podio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 22px;
+    width: 100%;
+    z-index: 2;
+}
+
+.card-podio {
+    position: relative;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 6px;
+    width: 300px;
+    max-width: 90vw;
+    padding: 18px;
+    box-shadow: 8px 8px 0 var(--pista-borda);
+    text-align: center;
+    animation: subir 0.6s ease both;
+}
+
+.card-podio.campeao {
+    transform: scale(1.06);
+    border: 4px solid var(--ouro);
+}
+
+.card-podio.prata {
+    margin-top: 40px;
+}
+
+.card-podio.bronze {
+    margin-top: 70px;
+}
+
+.faixa-campeao {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ouro);
+    color: var(--tinta);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.72rem;
+    padding: 5px 16px;
+    border: 2px solid var(--tinta);
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.posicao-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pista-borda);
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.card-podio.campeao .posicao-label {
+    color: var(--ouro);
+}
+
+.moldura-personagem {
+    width: 150px;
+    height: 150px;
+    margin: 12px auto;
+    border-radius: 50%;
+    border: 5px solid var(--tinta);
+    background: var(--papel-escuro);
+}
+
+.card-podio.campeao .moldura-personagem {
+    width: 180px;
+    height: 180px;
+}
+
+.foto-cavalo {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.nome-cavalo {
+    font-family: 'Rye', serif;
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+
+.tempo-total {
+    font-size: 0.9rem;
+    color: var(--pista-borda);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.historico-titulo {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.historico-voltas li {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.82rem;
+    padding: 4px 8px;
+    border-bottom: 1px dashed var(--areia);
+}
+
+.historico-voltas li:first-child {
+    font-weight: 700;
+    color: var(--tinta);
+}
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-podio.campeao {
+    animation-name: subir;
+}
+
+.btn-novamente {
+    margin-top: 40px;
+    z-index: 2;
+    background: var(--tinta);
+    color: var(--papel);
+}

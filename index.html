@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js"></script>
+    <title>Turfe Amigo</title>
+    <link rel="stylesheet" href="turfe.css">
+    <script src="turfe.js" defer></script>
 </head>
 
 <body>
-    <div id="resultado"></div>
-    Quantidade Voltas: <input type="text" id="ipt_qtdVoltas"><br>
-    Quantidade Cavalos: <input type="text" id="ipt_qtdCavalos">
+    <main id="tela-corrida" class="tela">
+        <header class="cabecalho">
+            <h1 class="titulo">Turfe Amigo</h1>
+            <p class="subtitulo">A grande corrida do velho oeste</p>
+        </header>
 
-    <button onclick="corrida()">Iniciar Corrida</button>
+        <section id="painel-config" class="painel-config">
+            <div class="config-interna">
+                <div class="campo">
+                    <label for="ipt_qtdVoltas">Quantidade de Voltas</label>
+                    <input type="number" id="ipt_qtdVoltas" min="1" value="3">
+                </div>
+                <div class="campo">
+                    <label for="ipt_qtdCavalos">Quantidade de Cavalos (3 a 6)</label>
+                    <input type="number" id="ipt_qtdCavalos" min="3" max="6" value="4" oninput="gerarCamposNomes()">
+                </div>
+            </div>
+
+            <div class="campo campo-nomes-wrapper">
+                <label>Nomes dos Cavalos</label>
+                <div id="campos-nomes" class="campos-nomes"></div>
+            </div>
+
+            <button id="btn_iniciar" class="btn btn-principal" onclick="corrida()">Iniciar Corrida</button>
+        </section>
+
+        <section class="arena">
+            <div class="hipodromo" id="hipodromo">
+                <div class="campo-interno">
+                    <div class="placar-volta">
+                        <span class="placar-label">Volta</span>
+                        <span class="placar-valor" id="placar-volta-atual">0</span>
+                        <span class="placar-total" id="placar-volta-total">/ 0</span>
+                    </div>
+                    <div class="lider-box" id="lider-box">
+                        <span class="lider-titulo">Liderança</span>
+                        <span class="lider-nome" id="lider-nome">—</span>
+                        <span class="lider-gap" id="lider-gap"></span>
+                    </div>
+                </div>
+
+                <div class="linha-chegada" id="linha-chegada"></div>
+                <div id="pista-cavalos"></div>
+            </div>
+
+
+            <aside class="painel-voltas">
+                <h2>Resultado das Voltas</h2>
+                <div id="resultado" class="resultado"></div>
+            </aside>
+        </section>
+
+
+        <button id="btn_encerrar" class="btn btn-encerrar oculto" onclick="encerrarTurfe()">
+            Encerrar Turfe e ver o Pódio
+        </button>
+    </main>
+
+    <section id="tela-encerramento" class="tela tela-encerramento oculto">
+        <div class="confetes" id="confetes"></div>
+        <header class="cabecalho-final">
+            <p class="kicker">Turfe Amigo</p>
+            <h1 class="titulo-final">Pódio Oficial</h1>
+            <p class="subtitulo-final">Os três cavaleiros que cruzaram a linha</p>
+        </header>
+
+        <div class="podio" id="podio"></div>
+
+        <button class="btn btn-principal btn-novamente" onclick="reiniciar()">Correr Novamente</button>
+    </section>
 </body>
+
 </html>
